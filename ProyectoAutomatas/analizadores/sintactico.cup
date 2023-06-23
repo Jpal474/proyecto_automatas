@@ -1,0 +1,28 @@
+package automatas;
+import java.io.*;
+import java_cup.runtime.*; 
+import java.util.logging.Level;
+import java.util.Stack;
+
+parser code
+{:                
+        static TablaSimbolos tablaSimbolos = new TablaSimbolos();
+        static int verificarTipo = 0;
+        static Stack <String> listaIdentificadores = new Stack <String>();
+	public static void main(String args[]) throws Exception{
+		//new parser(new Yylex(new FileInputStream(args[0]))).parse();
+		new parser(new Yylex(System.in)).parse();
+	}
+	public void syntax_error(Symbol s){
+		report_error("Error de sintaxis. Linea: " + (s.right + 1) +
+		" Columna: " + s.left + ". Texto: \"" + s.value + "\"", null);
+	}
+:}
+
+terminal PTYCOMA, MAS, POR, DIVIDIDO, MENOS;
+terminal PARIZQ, PARDER;
+terminal String IDENTIFICADOR;
+terminal Integer NUMERO;
+terminal Double DECIMAL;
+terminal String INT;
+terminal String DOUBLE, IMPRIMIR;
